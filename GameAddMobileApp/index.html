@@ -1,0 +1,716 @@
+<!--
+Mobile web development
+Template for General purpose html5 page with JQuery Mobile
+Created by: Danial Takdehghan
+email:      dTakdehghan2203@conestogac.on.ca
+-->
+
+<!DOCTYPE html>
+<html lang="en"   >
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>DTBP Final Project</title>
+        <link href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery Mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery Mobile stylesheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+        <!--our script-->
+        <script src="js/DAL.js"></script>
+        <script src="js/Database.js"></script>
+        <script src="js/Facade.js"></script>
+        <script src="js/Global.js"></script>
+        <script src="js/Util.js"></script>
+        <!--Map-->
+        <script src="js/geo.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+        <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+
+        <!--our styles-->
+        <link rel="stylesheet" href="css/myStyle.css">
+        <script src="js/lib/jquery.validate.js"></script>
+
+
+    <body >
+        <!-- <Game Home page-->
+        <div id="pageHome" data-role="page" name="HomePage" data-theme="b">
+            <header  style="border-radius: 12px; margin-bottom: 10px;">
+                <h1 style="color:black; font-weight: bolder; padding: 12px; ">Danial and Blake Games app</h1>
+            </header>
+            <nav class ="navbar">
+                <div class="brand-title">Home</div>
+                <a href="#" class="toggle-button">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: black;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <h4>Check Out Our Top games</h4>
+
+            <div class="slide-container">
+                <div class="slides" id="slides">
+                    <img src="img/1.jpg" class="active">
+                    <img src="img/2.jpg" >
+                    <img src="img/4.jpg" >
+                    <img src="img/5.jpg" >
+                    <img src="img/6.jpg" >
+                    <img src="img/7.jpg" >
+                    <img src="img/8.jpg" >
+                    <img src="img/9.jpg" >
+                    <img src="img/10.jpg" >
+                    <img src="img/11.png" >
+                </div>
+
+                <div class="buttons">
+                    <span class="next">&#10095</span>
+                    <span class="prev">&#10094</span>
+
+                </div>
+
+                <div class="dotContainer">
+                    <div class="dot active" attr='0' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='1' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='2' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='3' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='4'onclick="switchImage(this)"></div>
+                    <div class="dot active" attr='5' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='6' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='7' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='8' onclick="switchImage(this)"></div>
+                    <div class="dot" attr='"9"'onclick="switchImage(this)"></div>
+                </div>
+            </div>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1>&copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+
+        </div>
+        <!-- <Adding New Game -->
+        <div id="pageAddGame" data-role="page" name="pageAddGame" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Add</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black; ">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">Add</a></li>
+                        <li><a href="#pageList" style="color: black;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <fieldset data-role="controlgroup" data-type="horizontal"  style="margin-left: 20px;">
+                <a href="#pageAddGame" type="button" data-role="button" id="btnAddGame"  name="btnAddGame" style="background-color: gainsboro; color: black;" >Add Game</a>
+                <a href="#pageAddCompany" type="button" data-role="button" id="btnAddCompany" name="btnAddCompany" style="background-color: gray; color: black;">Add Company</a>
+                <a href="#pageAddGenre" type="button" data-role="button" id="btnAddGenre" name="btnAddGenre2" style="background-color: gray; color: black;">Add Genre</a>
+            </fieldset>
+            <h4>Add a New Game</h4>
+            <img src="" id="image">
+
+            <p id="noValues"></p>
+
+            <form id="frmAddGame"  style="margin: 20px;" >
+
+                <label for="gameName">Video Game Name:</label>
+                <input type="text" id="gameName" name="gameName">
+
+                <label for="gameURL">Cover Image URL:</label>
+                <input type="text" id="gameURL" name="gameURL">
+
+                <label for="gameGenre">Genre:</label>
+                <select  data-role="combobox" id="gameGenre" name="gameGenre" >
+                </select>
+
+                <label for="gameCreator">Creator:</label>
+                <select  data-role="combobox" id="gameCreator" name="gameCreator" >
+                </select>
+
+                <label for="gameYear">year released:</label>
+                <input type="date" id="gameYear" name="gameYear" class='datepicker'>
+
+                <label for="gameDescription">Description:</label>
+                <textarea type="text" id="gameDescription" name="gameDescription" ></textarea>
+
+                <label for="gameRate">IGN Rate(0/10): </label>
+                <input type="number" id="gameRate" name="gameRate">
+
+                <button type="button" data-role="button" id="btnAddNawGame" name="btnAddNawGame"  style=" background-color: #ffdd00; color: black;  ">Add</button>
+                <a href="#pageHome" type="button" data-role="button" id="btnReturn" name="btnReturn" style="background-color: #ffdd00; color: black;" >Return</a>
+            </form>
+
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+
+        </div>
+        <!-- Add company-->
+        <div id="pageAddCompany" data-role="page" name="pageAddCompany" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Add</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">Add</a></li>
+                        <li><a href="#pageList" style="color: black;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <fieldset data-role="controlgroup" data-type="horizontal" style="margin-left: 20px;">
+                <a href="#pageAddGame" type="button" data-role="button" id="btnAddGame2"  name="btnAddGame2" style="background-color: grey; color: black;" >Add Game</a>
+                <a href="#pageAddCompany" type="button" data-role="button"  id="btnAddCompany2" name="btnAddCompany2" style="background-color: gainsboro; color: black;">Add Company</a>
+                <a href="#pageAddGenre" type="button" data-role="button" id="btnAddGenre2" name="btnAddGenre2" style="background-color: gray; color: black;">Add Genre</a>
+            </fieldset>
+            <h4>Add a New Company</h4>
+            <form id="frmAddCompany" name="frmAddCompany" style="margin: 20px;" >
+                <label for="companyName">Company name:</label>
+                <input type="text" id="companyName" name="companyName" >
+
+                <label for="companyCoverImg">Company Cover Image URL:</label>
+                <input type="text" id="companyCoverImg" name="companyCoverImg" >
+
+                <label for="companyDescription">Description:</label>
+                <textarea type="text" id="companyDescription" name="companyDescription" ></textarea>
+
+                <label for="companyRate">Rate(0/10): </label>
+                <input type="number" id="companyRate" name="companyRate">
+
+                <button type="button" data-role="button" id="btnAddCompanyform" name="btnAddCompanyform"  style=" background-color: #ffdd00; color: black;">Add</button>
+                <a type="button" data-role="button" id="btnReturnCompanyform" name="btnReturnCompanyform"  style="background-color: #ffdd00; color: black;">Return</a>
+
+            </form>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+        </div>
+        <!-- Add Genre-->
+        <div id="pageAddGenre" data-role="page" name="pageAddGenre" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Add</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">Add</a></li>
+                        <li><a href="#pageList" style="color: black;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <fieldset data-role="controlgroup" data-type="horizontal" style="margin-left: 20px;">
+                <a href="#pageAddGame" type="button" data-role="button" id="btnAddGame3"  name="btnAddGame3" style="background-color: grey; color: black;" >Add Game</a>
+                <a href="#pageAddCompany" type="button" data-role="button"  id="btnAddCompany3" name="btnAddCompany3" style="background-color: grey; color: black;">Add Company</a>
+                <a href="#pageAddGenre" type="button" data-role="button" id="btnAddGenre3" name="btnAddGenre3" style="background-color: gainsboro; color: black;">Add Genre</a>
+            </fieldset>
+            <h4>Add a New Genre</h4>
+            <form id="frmAddGenre"  style="margin: 20px;" >
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" >
+
+                <label for="aboutGenre">about genre:</label>
+                <textarea type="text" id="aboutGenre" name="aboutGenre" ></textarea>
+
+                <label for="companyRate">Genre Popularity: </label>
+                <select  data-role="combobox" id="genrePopularity" name="genrePopularity" >
+                    <option value="1" >Very Popular</option>
+                    <option value="2">Popular</option>
+                    <option value="3">Not very Popular</option>
+                </select>
+
+                <button type="button" data-role="button" id="btnAddGenreform" name="btnAddenreform"  style=" background-color: #ffdd00; color: black;">Add</button>
+                <a type="button" data-role="button" id="btnReturnGenreform" name="btnReturnGenreform"  style="background-color: #ffdd00; color: black;">Return</a>
+
+            </form>
+        </div>
+        <!-- list of Games -->
+        <div id="pageList" data-role="page" name="pageList" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">List</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <fieldset data-role="controlgroup" data-type="horizontal" style="margin-left: 20px;">
+                <a href="#pageList" type="button" data-role="button" id="btnListGame1"  name="btnListGame1" style="background-color: gainsboro;  color: black;" >List Game</a>
+                <a href="#pageListCompany" type="button" data-role="button"  id="btnListCompany1" name="btnListCompany1" style="background-color: grey; color: black;">List Company</a>
+                <a href="#pageListGenre" type="button" data-role="button" id="btnListGenre1" name="btnListGenre1" style="background-color: grey; color: black;">List Genre</a>
+            </fieldset>
+            <h4>List Of Games</h4>
+            <section data-role="content"  name="listviewFeddback">
+                <ul data-role="listview" class="ui-listview-inset"  id="listviewGames" name="listviewGames">
+                    <li id="firstitem" >
+                        <a href="#DTModifyFeedbackPage" >
+                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Cyberpunk_2077_box_art.jpg/220px-Cyberpunk_2077_box_art.jpg" style=" width: 200px; height: 120px; position: absolute; top: 20px; left: 12px;">
+                            Game Name: <span id="businessname1"> CyberPunk2077 </span>
+                            <p> Company: <span id="company"> CD Project </span> </p>
+                            <p>  Year: <span id="year">2020</span></p>
+                            <p >  IGN Rate: <span id="rating1">7/10</span></p>
+
+                        </a>
+
+                    </li>
+                    <li id="seconditem" >
+                        <a href="#DTModifyFeedbackPage" >
+                            <img src="https://wp.clutchpoints.com/wp-content/uploads/2022/06/Call-of-Duty-Modern-Warfare-2-Release-Date-When-is-COD-MW2-Coming-Out.jpg" style=" width: 200px; height: 120px; position: absolute; top: 20px; left: 12px;">
+                            Game Name: <span id="businessname2"> COD:MW2   </span>
+                            <p> Company: <span id="email2">Activision </span> </p>
+                            <p>   Year: <span id="comment2">2023</span></p>
+                            <p >  IGN Rate: <span id="rating2">9/10</span></p>
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+        </div>
+        <!-- list of Company -->
+        <div id="pageListCompany" data-role="page" name="pageListCompany" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">List</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <fieldset data-role="controlgroup" data-type="horizontal" style="margin-left: 20px;">
+                <a href="#pageList" type="button" data-role="button" id="btnListGame2"  name="btnListGame2" style="background-color: grey;  color: black;" >List Game</a>
+                <a href="#pageListCompany" type="button" data-role="button"  id="btnListCompany2" name="btnListCompany2" style="background-color: gainsboro; color: black;">List Company</a>
+                <a href="#pageListGenre" type="button" data-role="button" id="btnListGenre2" name="btnListGenre2" style="background-color: grey; color: black;">List Genre</a>
+            </fieldset>
+            <h4>List Of Companies</h4>
+            <section data-role="content"  name="listviewFeddback">
+                <ul data-role="listview" class="ui-listview-inset"  id="listviewCompany" name="listviewFeddback">
+                    <li id="firstCompanyItem" >
+                        <a href="#DTModifyFeedbackPage" >
+                            <img src="https://th.bing.com/th/id/OIP.QLOypWRA6nUktj3PlnFBjAHaEK?pid=ImgDet&rs=1" style=" width: 200px; height: 130px; position: absolute; top: 20px; left: 12px;">
+                            Company Name: <span id="companyName1"> CD Project </span>
+                            <p> Rate: <span id="rateCompany1">9/10 </span> </p>
+                            <br>
+                            <br>
+                        </a>
+
+                    </li>
+                    <li id="secondCompanyItem" >
+                        <a href="#DTModifyFeedbackPage" >
+                            <img src="https://th.bing.com/th/id/R.3de231851bb7bca90b850fe09f988886?rik=AwfQzFfdPTmUqg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-VPA09yHtYoo%2fVItYQHMp-7I%2fAAAAAAAAcKk%2fZokby4msQbs%2fs1600%2factivision.jpg&ehk=Q7YpvnvnjuNX2rLgwlvJo3DFEqFnGwj%2fonbSaWYYKu8%3d&risl=&pid=ImgRaw&r=0" style=" width: 200px; height: 130px; position: absolute; top: 20px; left: 12px;">
+                            Company Name: <span id="companyName2"> Activision   </span>
+                            <p> Rate: <span id="rateCompany2"> 9.5/10</span> </p>
+                            <br>
+                            <br>
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+        </div>
+
+        <!-- list of Genre -->
+        <div id="pageListGenre" data-role="page" name="pageListGenre" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">List</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <fieldset data-role="controlgroup" data-type="horizontal" style="margin-left: 20px;">
+                <a href="#pageList" type="button" data-role="button" id="btnListGame3"  name="btnListGame3" style="background-color: grey;  color: black;" >List Game</a>
+                <a href="#pageListCompany" type="button" data-role="button"  id="btnListCompany3" name="btnListCompany3" style="background-color: grey; color: black;">List Company</a>
+                <a href="#pageListGenre" type="button" data-role="button" id="btnListGenre3" name="btnListGenre3" style="background-color: gainsboro; color: black;">List Genre</a>
+            </fieldset>
+            <h4>List Of Genres</h4>
+            <section data-role="content"  name="listviewFeddback">
+                <ul data-role="listview" class="ui-listview-inset"  id="listviewGenre" name="listviewGenreback">
+                    <li id="firstGenreItem" >
+                        <a href="#DTModifyFeedbackPage" >
+                            Genre: <span id="GenreName1"> Action </span>
+                            <p> about: <span id="aboutGenre1"> Enjoyable games mostly fighting and operational style</span> </p>
+                            <p> Popularity: <span id="genrePopularity1"> Very Popular</span> </p>
+                            <br>
+                        </a>
+
+                    </li>
+                    <li id="secondGenreItem" >
+                        <a href="#DTModifyFeedbackPage" >
+                            Genre: <span id="GenreName2"> Horror</span>
+                            <p> about: <span id="aboutGenre2"> the scary games that increase your heart beats</span> </p>
+                            <p> Popularity: <span id="genrePopularity2"> Popular</span> </p>
+                            <br>
+                        </a>
+
+                    </li>
+
+                </ul>
+
+
+            </section>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+        </div>
+        <!--Updating the game-->
+
+        <div id="pageModify" data-role="page" name="pageModify" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Update</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul>
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <h4>Update the Game </h4>
+            <img src="" id="imageModify">
+            <form id="frmModify"  style="margin: 20px;" >
+                <label for="gameName">Video Game Name:</label>
+                <input type="text" id="modifyGameName" name="gameName">
+
+                <label for="gameURL">Cover Image URL:</label>
+                <input type="text" id="modifyGameURL" name="gameURL">
+                <label for="gameGenre">Genre:</label>
+                <select  data-role="combobox" id="modifyGameGenre" name="gameGenre" >
+                    <!--<option value="Other">Other</option>-->
+                    <!--<option value="Canadian">Canadian</option>-->
+                    <!--<option value="Asian" >Asian</option>-->
+                    <!--<option value="Canadian">European</option>-->
+                    <!--<option value="Asian" >Australian</option>-->
+                </select>
+
+                <label for="gameCreator">Creator:</label>
+                <select  data-role="combobox" id="modifyGameCreator" name="gameCreator" >
+                    <!--<option value="Other">Other</option>-->
+                    <!--<option value="Canadian">Canadian</option>-->
+                    <!--<option value="Asian" >Asian</option>-->
+                    <!--<option value="Canadian">European</option>-->
+                    <!--<option value="Asian" >Australian</option>-->
+                </select>
+
+                <label for="modifyGameYear">year released:</label>
+                <input type="date" id="modifyGameYear" name="modifyGameYear" >
+
+                <label for="modifyGameDescription">Description:</label>
+                <textarea type="text" id="modifyGameDescription" name="modifyGameDescription" ></textarea>
+
+                <label for="ModifyGameRate">IGN Rate(0/10): </label>
+                <input type="number" id="ModifyGameRate" name="ModifyGameRate">
+
+                <button type="button" data-role="button" id="btnUpdateGame" name="btnUpdateGame" data-theme="active" style=" background-color: #ffdd00; color: black;  ">Update</button>
+                <a href="#pageList" type="button" data-role="button" id="btnCancel" name="btnCancel" style="background-color: #ffdd00; color: black;" >Cancel</a>
+                <button type="button" data-role="button" id="btnDeleteGame" name="btnDeleteGame" data-theme="active" style=" background-color: #f36363; color: black;  ">Delete</button>
+
+
+            </form>
+
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+
+        </div>
+        <!--Updating the Company-->
+
+        <div id="pageModifyCompany" data-role="page" name="pageModifyCompany" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Update</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black; font-size:20px ; font-weight: bold;">Add</a></li>
+                        <li><a href="#pageList" style="color: beige;background-color: #555555;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <h4>Update the Company</h4>
+            <form id="frmModifyCompany" name="frmModifyCompany" style="margin: 20px;" >
+                <label for="companyModifyName">Company name:</label>
+                <input type="text" id="companyModifyName" name="companyModifyName" >
+
+                <label for="companyModifyCoverImg">Company Cover Image URL:</label>
+                <input type="text" id="companyModifyCoverImg" name="companyModifyCoverImg" >
+
+                <label for="companyModifyDescription">Description:</label>
+                <textarea type="text" id="companyModifyDescription" name="companyModifyDescription" ></textarea>
+
+                <label for="companyModifyRate">Rate(0/10): </label>
+                <input type="number" id="companyModifyRate" name="companyModifyRate">
+
+                <button type="button" data-role="button" id="btnModifyCompanyform" name="btnModifyCompanyform"  style=" background-color: #ffdd00; color: black;">Update</button>
+                <a href="#pageListCompany" type="button" data-role="button" id="btnReturnModifyCompanyform" name="btnReturnModifyCompanyform"  style="background-color: #ffdd00; color: black;">Cancel</a>
+                <button type="button" data-role="button" id="btnDeleteCompany" name="btnDeleteCompany" data-theme="active" style=" background-color: #f36363; color: black;  ">Delete</button>
+
+            </form>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+        </div>
+        <!-- Update Genre-->
+        <div id="pageModifyGenre" data-role="page" name="pageModifyGenre" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Update</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul >
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black; font-size:20px ; font-weight: bold; ">Add</a></li>
+                        <li><a href="#pageList" style="color: beige; background-color: #555555;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <h4>Update Genre</h4>
+            <form id="frmModifyGenre"  style="margin: 20px;" >
+                <label for="genreModify">Genre:</label>
+                <input type="text" id="genreModify" name="genreModify" >
+
+                <label for="aboutGenreModify">about genre:</label>
+                <textarea type="text" id="aboutGenreModify" name="aboutGenreModify" ></textarea>
+
+                <label for="companyRate">Genere Popularity: </label>
+                <select  data-role="combobox" id="genrePopularityModify" name="genrePopularityModify" >
+                    <option value="1" >Very Popular</option>
+                    <option value="2">Popular</option>
+                    <option value="3">Not very Popular</option>
+                </select>
+
+                <button type="button" data-role="button" id="btnModifyGenreform" name="btnModifyGenreform"  style=" background-color: #ffdd00; color: black;">Update</button>
+                <a href="#pageListGenre" type="button" data-role="button" id="btnReturnModifyGenreform" name="btnReturnModifyGenreform"  style="background-color: #ffdd00; color: black;">Cancel</a>
+                <button type="button" data-role="button" id="btnDeleteGenre" name="btnDeleteGenre" data-theme="active" style=" background-color: #f36363; color: black;  ">Delete</button>
+
+            </form>
+        </div>
+        <!--Setting Page-->
+        <div id="settingsPage" data-role="page" name="settingPage" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Setting</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul>
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: black; ">List</a></li>
+                        <li><a href="#settingsPage" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: black;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <h4>Setting </h4>
+
+            <form id="frmSettings"  style="margin: 20px;">
+
+                <label for="userEmail">Email:</label>
+                <input type="text" id="userEmail" name="userEmail" placeholder="User Email" >
+
+
+                <button type="button" data-role="button" id="btnSaveDef" name="btnSaveDef" style="background-color: #ffdd00; color: black;">Save Defaults</button>
+                <button type="button" data-role="button" id="btnClearDef" name="btnClearDef" style="background-color: #ffdd00; color: black;">Clear Database</button>
+
+
+
+
+            </form>
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+
+        </div>
+
+        <!--About Page-->
+        <div id="aboutPage" data-role="page" name="aboutPage" data-theme="b">
+            <nav class ="navbar">
+                <div class="brand-title">Setting</div>
+                <a href="#" class="toggle-button" class="toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </a>
+                <div class="navbarLink">
+                    <ul>
+                        <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                        <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                        <li><a href="#pageList" style="color: black;">List</a></li>
+                        <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                        <li><a href="#aboutPage" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">About</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <h4>About Us </h4>
+            <div style="background-color: #ffdd00; color: black; margin-top: 25px; border-radius: 15px; ">
+                <p style="padding: 12px; height: 10rem;">
+                    This app has been developed
+                    by colaboration of <b>Danial Takdehghan</b>
+                    and <b>Blake Power</b> the CPA students at Conestoga College
+                </p>
+            </div>
+
+            <h4 style="margin-left: 3rem; margin-right: 3rem; border-radius: 30px;">Check out the Location</h4>
+            <a style="margin-left: 6rem; margin-right: 6rem; border-radius: 20px;" href="#map-page" type="button" data-role="button" id="btnGoMap" name="btnGoMap" >Show Location</a>
+
+            <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+                <h1> &copy; Danial Takdehghan & Blake Power</h1>
+            </footer>
+        </div>
+       <!-- Map-->
+    <div id="map-page" data-role="page" data-theme="b">
+        <nav class ="navbar">
+            <div class="brand-title">About</div>
+            <a href="#" class="toggle-button" class="toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <div class="navbarLink">
+                <ul>
+                    <li><a  href="#pageHome"  style="color: black;">Home</a></li>
+                    <li><a href="#pageAddGame" style="color: black;">Add</a></li>
+                    <li><a href="#pageList" style="color: black;">List</a></li>
+                    <li><a href="#settingsPage" style="color: black;">Setting</a></li>
+                    <li><a href="#aboutPage" style="color: beige; font-size:20px ; font-weight: bold; background-color: #555555;">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        <h4>Map </h4>
+        <section data-role="content">
+            <button id="btnShow"  name="btnShow" data-icon="plus" style="background-color: #ffdd00; color: black;">Show map</button>
+        </section>
+        <div style="width: 380px; height: 470px; margin-left: 1rem; margin-top: 1rem; display: flex" id="mapContainer">
+
+        </div>
+
+        <footer data-role="footer" data-position="fixed" data-theme="y" style="border-radius: 15px;">
+            <h1> &copy; Danial Takdehghan & Blake Power</h1>
+        </footer>
+
+    </div>
+        </div>
+        <script src="js/myScript.js"></script>
+    </body>
+
+</html>
+
+

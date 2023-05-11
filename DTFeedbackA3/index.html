@@ -1,0 +1,319 @@
+<!--
+Mobile web development Assignment 1
+Created by: Danial Takdehghan
+email:      dTakdehghan2203@conestogac.on.ca
+Date: 1/28/2023
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>jQuery Mobile app template</title>
+        <!--jQuery-->
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <!--jQuery Mobile-->
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <!--jQuery Mobile stylesheet-->
+        <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+        <!--our script-->
+        <script src="js/myScript.js"></script>
+        <!--our styles-->
+        <link rel="stylesheet" href="css/myStyle.css">
+
+
+        <!--jQuery validation library-->
+        <script src="../../../Users/dania/Desktop/Semester%204/Programming%20Mobile%20Application%20I/Final%20Project/DTBPFinalProject/js/lib/jquery.validate.js"></script>
+
+        <!--Our Scripts-->
+        <script src="js/DTDAL.js"></script>
+        <script src="js/DTdatabase.js"></script>
+        <script src="js/DTfacade.js"></script>
+        <script src="js/DTglobal.js"></script>
+        <script src="js/DTutil.js"></script>
+
+        <!-- our stylesheet-->
+        <link rel="stylesheet" href="css/DTmystyle.css">
+
+    </head>
+    <body>
+
+          <!-- home page-->
+        <div id="DTHomePage" data-role="page" name="HomePage">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>DT Feedback A3</h1>
+            </header>
+            <div id="navBarHome" name="navBar" data-role="navbar" data-iconpos="top" style="position: sticky">
+                <ul id="navHome" name="navbar">
+                    <li><a href="#DTHomePage" data-icon="home" class="ui-btn-active  ui-state-persist" >Home</a></li>
+                    <li><a href="#DTAddFeddbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#DTViewFeedbackPage" data-icon="grid">Reviews</a></li>
+                    <li><a href="#DTSettingsPage" data-icon="gear">Setting</a></li>
+
+                </ul>
+            </div>
+            <section data-role="content" >
+                <h2 style="text-align: center;">Danial Takdehghan Feedback A3 App </h2>
+                <p>Welcom to the Danial Takdehghan's Feedback A2 app. A prototype designed for mobile programming class.
+                    This is the first iteration of the app to keep track of different places you visited along with your
+                    reviews   </p>
+                <img   src="img/Dt-laptop.png" class="center"  >
+
+            </section>
+            <!--<div data-role="image" >-->
+            <!--    <img src="img/Dt-laptop.png">-->
+            <!--</div>-->
+            <div data-role="content" >
+               <p>Please feel free to contact me if you have any suggestion!</p>
+            </div>
+            <div style="margin: 0 22px 0 22px;">
+            <div data-role="collapsible">
+                <h3>Call: 519.7485220</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad architecto cumque cupiditate dolorum eos incidunt iusto placeat quasi sit.</p>
+            </div>
+            <div data-role="collapsible">
+                <h3>dtakdehghan2203@conestogac.on.ca</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad architecto cumque cupiditate dolorum eos incidunt iusto placeat quasi sit.</p>
+            </div>
+            <p>Website:</p>
+            <div data-role="collapsible">
+                <h3>Conestoga College</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad architecto cumque cupiditate dolorum eos incidunt iusto placeat quasi sit.</p>
+            </div>
+        </div>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy;2023 Danial Takdehghan</h1>
+            </footer>
+
+        </div>
+
+         <!-- Add Page -->
+        <div id="DTAddFeddbackPage" data-role="page" name="AddFeddbackPage">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Add Feedback</h1>
+            </header>
+            <div id="navBarAdd" name="navBar" data-role="navbar" data-iconpos="top">
+                <ul id="navAdd" name="navbar">
+                    <li><a href="#DTHomePage" data-icon="home"  >Home</a></li>
+                    <li><a href="#DTAddFeddbackPage" data-icon="plus" class="ui-btn-active  ui-state-persist">Add</a></li>
+                    <li><a href="#DTViewFeedbackPage" data-icon="grid" >Reviews</a></li>
+                    <li><a href="#DTSettingsPage" data-icon="gear" >Setting</a></li>
+                </ul>
+            </div>
+
+
+            <form id="frmAdd" style="margin: 20px;">
+
+                <label for="business">Business Name:</label>
+                <input type="text" id="business" name="business" >
+
+                <label for="cmbState">Type:</label>
+                <select  data-role="combobox" id="cmbState" name="cmbState" >
+                    <!--<option value="Other">Others</option>-->
+                    <!--<option value="Canadian">Canadian</option>-->
+                    <!--<option value="Asian" >Asian</option>-->
+                    <!--<option value="Canadian">European</option>-->
+                    <!--<option value="Asian" >Australian</option>-->
+                </select>
+
+                <label for="email">Reviewer Email:</label>
+                <input type="email" id="email" name="email" >
+
+                <label for="comment">Reviewer Comments:</label>
+                <textarea type="text" id="comment" name="comment" ></textarea>
+
+
+                <label for="addReviewDate">Review Date </label>
+                <input type="date" id="addReviewDate" name="addReviewDate">
+
+
+                <input type="checkbox" id="chckRating" name="chckRating" uncheked>
+                <label for="chckRating" >Do you Wnat to add your ratings?</label>
+
+                <div id="ratingContent" hidden>
+                <label for="foodQualityRate">Food Quality(0-5):</label>
+                <input type="number" id="foodQualityRate" name="foodQualityRate"  value="0" >
+
+                <label for="servicRate">Service(0-5):</label>
+                <input type="number" id="servicRate" name="servicRate"  value="0">
+
+                <label for="valueRate">Value(0-5):</label>
+                <input type="number" id="valueRate" name="valueRate"  value="0">
+
+                <label for="overallRating">Overall Ratings(Calculated):</label>
+                <input type="text" id="overallRating" name="overallRating" readonly>
+                </div>
+
+                <button type="button" data-role="button" id="btnSave" name="btnSave" data-theme="active" style=" font-size: 16px; width: 5pc; ">Save</button>
+
+
+
+            </form>
+
+
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy;2023 Danial Takdehghan</h1>
+            </footer>
+
+        </div>
+
+        <!--Reveiw Page -->
+        <div id="DTViewFeedbackPage" data-role="page" name="viewFeedbackPage">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>List of Reviews</h1>
+            </header>
+            <div id="navBarReview" name="navBar" data-role="navbar" data-iconpos="top">
+                <ul id="navReview" name="navbar">
+                    <li><a href="#DTHomePage" data-icon="home" >Home</a></li>
+                    <li><a href="#DTAddFeddbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#DTViewFeedbackPage" data-icon="grid" class="ui-btn-active  ui-state-persist">Reviews</a></li>
+                    <li><a href="#DTSettingsPage" data-icon="gear">Setting</a></li>
+                </ul>
+            </div>
+
+            <section data-role="content"  name="listviewFeddback">
+                <ul data-role="listview" class="ui-listview-inset"  id="listviewFeedback" name="listviewFeddback">
+                    <li id="firstitem" style="display: none;">
+                        <a href="#DTModifyFeedbackPage" >
+                            Business Name: <span id="businessname1"> LCBO Liquor Store </span>
+                            <p> Reviewer Email: <span id="email1"> dtakdehghan2203@conestogac.on.ca </span> </p>
+                            <p>  Comments: <span id="comment1">Best quality drinks you can ever find are here!</span></p>
+                            <p >  Overall Rating: <span id="rating1">95</span>%</p>
+
+                        </a>
+
+                    </li>
+                    <li id="seconditem" style="display: none;">
+                        <a href="#DTModifyFeedbackPage" >
+                           Business Name: <span id="businessname2"> Red Lobster  </span>
+                            <p> Reviewer Email: <span id="email2"> dtakdehghan2203@conestogac.on.ca </span> </p>
+                            <p>  Comments: <span id="comment2">If anyone is looking for a place for delicious sea foods this is the place !</span></p>
+                            <p >  Overall Rating: <span id="rating2">100</span>%</p>
+
+                        </a>
+
+
+                    </li>
+
+                </ul>
+
+
+            </section>
+
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy;2023 Danial Takdehghan</h1>
+            </footer>
+
+        </div>
+
+        <!--Modify Page -->
+        <div id="DTModifyFeedbackPage" data-role="page" name="modifyFeddbackPage">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Modify Feedback</h1>
+            </header>
+            <div id="navBarModify" name="navBar" data-role="navbar" data-iconpos="top">
+                <ul id="navModify" name="navbar">
+                    <li><a href="#DTHomePage" data-icon="home" >Home</a></li>
+                    <li><a href="#DTAddFeddbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#DTViewFeedbackPage" data-icon="grid" class="ui-btn-active  ui-state-persist">Reviews</a></li>
+                    <li><a href="#DTSettingsPage" data-icon="gear" >Setting</a></li>
+                </ul>
+            </div>
+
+            <form id="frmModify" name="modifyForm" style="margin: 20px;" >
+
+                <label for="businessModify">Business Name:</label>
+                <input type="text" id="businessModify" name="businessModify"  >
+
+                <label for="business">Type:</label>
+                <select  data-role="combobox" id="modifyCmbState" name="cmbState" >
+                    <!--<option value="Other">Other</option>-->
+                    <!--<option value="Canadian">Canadian</option>-->
+                    <!--<option value="Asian" >Asian</option>-->
+                    <!--<option value="Canadian">European</option>-->
+                    <!--<option value="Asian" >Australian</option>-->
+                </select>
+
+                <label for="emailModify">Reviewer Email:</label>
+                <input type="email" id="emailModify" name="emailModify" >
+
+                <label for="commentModify">Reviewer Comments:</label>
+                <textarea type="text" id="commentModify" name="commentModify" ></textarea>
+
+                <label for="modifyReveiewDate">Review Date: </label>
+                <input type="date" id="modifyReveiewDate" name="modifyReveiewDate"
+                       class="required">
+
+
+
+
+
+                <input type="checkbox" id="modifychckRating" name="modifychckRating" >
+                <label for="modifychckRating" >Do you Wnat to add your ratings?</label>
+
+                <div id="modifyratingContent" hidden>
+                    <label for="modifyfoodQualityRate">Food Quality(0-5):</label>
+                    <input type="number" id="modifyfoodQualityRate" name="modifyfoodQualityRate"  value="0" >
+
+                    <label for="modifyservicRate">Service(0-5):</label>
+                    <input type="number" id="modifyservicRate" name="modifyservicRate"  value="0">
+
+                    <label for="modifyvalueRate">Value(0-5):</label>
+                    <input type="number" id="modifyvalueRate" name="modifyvalueRate"  value="0">
+
+                    <label for="modifyoverallRating">Overall Ratings(Calculated):</label>
+                    <input type="text" id="modifyoverallRating" name="modifyoverallRating" readonly>
+                </div>
+
+                <fieldset data-role="controlgroup" data-type="horizontal">
+
+
+                    <a href="#DTViewFeedbackPage" type="button" data-role="button" id="btnCancel" name="btnCancel" style="background-color: yellow">Cancel</a>
+                <button type="button" data-role="button" id="btnDelete" name="btnDelete" style="" data-theme="b">Delete</button>
+                <button type="button" data-role="button" id="btnUpdate" name="btnUpdate" data-theme="active" style="  width: 4pc; ">Update</button>
+                </fieldset>
+
+
+
+            </form>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy;2023 Danial Takdehghan</h1>
+            </footer>
+
+        </div>
+
+        <!--Settings Page -->
+        <div id="DTSettingsPage" data-role="page" name="settingPage">
+            <header data-role="header" data-position="fixed" data-theme="a">
+                <h1>Settings</h1>
+            </header>
+            <div id="navBar" name="navBar" data-role="navbar" data-iconpos="top">
+                <ul id="nav" name="navbar">
+                    <li><a href="#DTHomePage" data-icon="home" >Home</a></li>
+                    <li><a href="#DTAddFeddbackPage" data-icon="plus">Add</a></li>
+                    <li><a href="#DTViewFeedbackPage" data-icon="grid">Reviews</a></li>
+                    <li><a href="#DTSettingsPage" data-icon="gear" class="ui-btn-active  ui-state-persist">Setting</a></li>
+                </ul>
+            </div>
+
+            <form id="frmSettings" name="frmSettings" style="margin: 20px;">
+
+                <label for="defReviewerEmail">Default reviewer Email:</label>
+                <input type="text" id="defReviewerEmail" name="defReviewerEmail" value="dtakdehghan2203@conestogac.on.ca" >
+
+
+                <button type="button" data-role="button" id="btnSaveDef" name="btnSaveDef" data-theme="active">Save Defaults</button>
+                <button type="button" data-role="button" id="btnClearDef" name="btnClearDef" style="" data-theme="b">Clear Database</button>
+
+
+
+
+            </form>
+            <footer data-role="footer" data-position="fixed" data-theme="a">
+                <h1> &copy;2023 Danial Takdehghan</h1>
+            </footer>
+
+        </div>
+
+    </body>
+</html>
